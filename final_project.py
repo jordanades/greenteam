@@ -34,13 +34,13 @@ class ShoppingList:
         self.shopping_list = []
     def add_to_list(self, Recipe):
         """Jesse
-        This method will take a Recipe object as imput and will search through
+        This method will take a Recipe object as input and will search through
         it's list of ingredients, and add the ingredients not already on the 
-        shopping list to the shopping list.
+        shopping list to self.shopping_list.
         """
         
 def view_recipe(Recipe):
     """Anthony
-    Takes a recipe object as an imput and displays all of its properties in a
+    Takes a recipe object as an input and displays all of its properties in a
     good looking format.
     """
