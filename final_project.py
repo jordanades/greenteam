@@ -44,6 +44,10 @@ class ShoppingList:
         it's list of ingredients, and add the ingredients not already on the 
         shopping list to self.shopping_list.
         """
+        for ingredient in Recipe.ingredients:
+            if ingredient not in self.shopping_list:
+                self.shopping_list.append(ingredient)
+        
         
 def view_recipe(Recipe):
     """Anthony
