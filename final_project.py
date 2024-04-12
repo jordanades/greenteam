@@ -30,6 +30,8 @@ class Recipe:
     def add_ingredients(self, ingredient_list):
         """Jordan
         """
+        for ingredient in ingredient_list:
+            self.ingredients.append(ingredient)
     
 class ShoppingList:
     def __init__(self):
