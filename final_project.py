@@ -11,8 +11,15 @@ class RecipeManager:
     def search_for_ingredient(self, ingredient):
         """Jamie
         This method will search through the recipes and return a list of
-        recipes that contain the given incredient
+        recipes that contain the given ingredient
         """
+        matchRecipes = []
+        for rec in self.recipes:
+            if ingredient in rec.ingredients:
+                matchRecipes.append(rec)
+        return rec
+            
+        
     def categorize_recipes(self):
         """Ikenna
         This method will search through the recipes and return a list of
