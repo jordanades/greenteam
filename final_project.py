@@ -17,7 +17,7 @@ class RecipeManager:
         for rec in self.recipes:
             if ingredient in rec.ingredients:
                 matchRecipes.append(rec)
-        return rec
+        return matchRecipes
             
         
     def categorize_recipes(self):
