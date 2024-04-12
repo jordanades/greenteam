@@ -22,10 +22,14 @@ class RecipeManager:
 class Recipe:
     def __init__(self):
         """Jordan
+        Recipe category value will change but is 'Recipe' by default.
         """
         self.ingredients = []
         self.directions = ""
         self.category = "Recipe"
+    def add_ingredients(self, ingredient_list):
+        """Jordan
+        """
     
 class ShoppingList:
     def __init__(self):
