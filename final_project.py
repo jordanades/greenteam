@@ -56,8 +56,24 @@ class ShoppingList:
                 self.shopping_list.append(ingredient)
         
         
-def view_recipe(Recipe):
+def view_recipe(recipe):
     """Anthony
     Takes a recipe object as an input and displays all of its properties in a
     good looking format.
     """
+    
+    """ Confirms that the input is a Recipe Instance. """
+    if not isinstance(recipe, Recipe):
+        raise ValueError("Expected a Recipe instance")
+    
+    """ Displays the category of the recipe. """
+    print(f"Category: {recipe.category}")
+    print("\nIngredients:")
+    
+    """ Lists all the ingredients of the recipe. """
+    for ingredient in recipe.ingredients:
+        print(f"- {ingredient}")
+    
+    """ Displays the directions of the recipe. """ 
+    print("\nDirections:")
+    print(recipe.directions)
