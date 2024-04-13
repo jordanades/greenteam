@@ -26,12 +26,12 @@ class RecipeManager:
         lists that contain the recipes for the different categories
         (list for desserts, for appetizers, etc.)"""
         categorized = {}
-    for recipe in self.recipes:
-        if recipe.category in categorized:
-            categorized[recipe.category].append(recipe)
-        else:
-            categorized[recipe.category] = [recipe]
-    return categorized
+        for recipe in self.recipes:
+            if recipe.category in categorized:
+                categorized[recipe.category].append(recipe)
+            else:
+                categorized[recipe.category] = [recipe]
+        return categorized
 
 class Recipe:
     def __init__(self):
@@ -52,13 +52,13 @@ class ShoppingList:
         """Jordan
         """
         self.shopping_list = []
-    def add_to_list(self, Recipe):
+    def add_to_list(self, recipe):
         """Jesse
         This method will take a Recipe object as input and will search through
         it's list of ingredients, and add the ingredients not already on the 
         shopping list to self.shopping_list.
         """
-        for ingredient in Recipe.ingredients:
+        for ingredient in recipe.ingredients:
             if ingredient not in self.shopping_list:
                 self.shopping_list.append(ingredient)
         
