@@ -25,6 +25,13 @@ class RecipeManager:
         This method will search through the recipes and return a list of
         lists that contain the recipes for the different categories
         (list for desserts, for appetizers, etc.)"""
+        categorized = {}
+    for recipe in self.recipes:
+        if recipe.category in categorized:
+            categorized[recipe.category].append(recipe)
+        else:
+            categorized[recipe.category] = [recipe]
+    return categorized
 
 class Recipe:
     def __init__(self):
