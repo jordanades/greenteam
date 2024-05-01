@@ -1,3 +1,5 @@
+import pandas as pd
+
 """Write your function where I put your name. Commit to github when you
 finish your part.
 """
@@ -7,6 +9,9 @@ class RecipeManager:
         """Jordan
         """
         self.recipes = []
+        
+    def add_recipe(self, recipe):
+        self.recipes.append(recipe)
         
     def search_for_ingredient(self, ingredient):
         """Jamie
@@ -74,14 +79,25 @@ def view_recipe(recipe):
     if not isinstance(recipe, Recipe):
         raise ValueError("Expected a Recipe instance")
     
+    print(recipe.name)
+    
     """ Displays the category of the recipe. """
-    print(f"Category: {recipe.category}")
+    print(f"\nCategory: {recipe.category}")
     print("\nIngredients:")
     
     """ Lists all the ingredients of the recipe. """
     for ingredient in recipe.ingredients:
-        print(f"- {ingredient}")
+        print(f"\n- {ingredient}")
     
     """ Displays the directions of the recipe. """ 
     print("\nDirections:")
     print(recipe.directions)
+
+if __name__ == "__main__":
+    Recipe_Book = RecipeManager()
+    df = pd.read_csv('Data for 326 - Sheet1.csv', header=0)
+    for index, row in df.iterrows():
+        Recipe_Book.add_recipe(Recipe(row["Name"], list(row["Ingredients"].split(", ")), row["Directions"], row["Category"]))
+        
+    for recipe in Recipe_Book.recipes:
+        view_recipe(recipe)
