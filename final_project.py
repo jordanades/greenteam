@@ -1,4 +1,6 @@
 import pandas as pd
+import argparse
+import sys
 
 """Write your function where I put your name. Commit to github when you
 finish your part.
@@ -79,7 +81,7 @@ def view_recipe(recipe):
     if not isinstance(recipe, Recipe):
         raise ValueError("Expected a Recipe instance")
     
-    print(recipe.name)
+    print(f"\n{recipe.name}")
     
     """ Displays the category of the recipe. """
     print(f"\nCategory: {recipe.category}")
@@ -91,13 +93,20 @@ def view_recipe(recipe):
     
     """ Displays the directions of the recipe. """ 
     print("\nDirections:")
-    print(recipe.directions)
+    print(f"\n{recipe.directions}")
+
+def parse_args(arglist):
+    parser = argparse.ArgumentParser()
+    parser.add_argument("file", help="filepath for recipes csv")
+    return parser.parse_args(arglist)
 
 if __name__ == "__main__":
+    args = parse_args(sys.argv[1:])
+    
     Recipe_Book = RecipeManager()
-    df = pd.read_csv('Data for 326 - Sheet1.csv', header=0)
+    df = pd.read_csv(args.file, header=0)
     for index, row in df.iterrows():
-        Recipe_Book.add_recipe(Recipe(row["Name"], list(row["Ingredients"].split(", ")), row["Directions"], row["Category"]))
+        Recipe_Book.add_recipe(Recipe(row["Name"], row["Ingredients"].split(", "), row["Directions"], row["Category"]))
         
     for recipe in Recipe_Book.recipes:
         view_recipe(recipe)
