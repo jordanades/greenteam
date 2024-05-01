@@ -28,19 +28,20 @@ class RecipeManager:
         categorized = {}
         for recipe in self.recipes:
             if recipe.category in categorized:
-                categorized[recipe.category].append(rec)
+                categorized[recipe.category].append(recipe)
             else:
                 categorized[recipe.category] = [recipe]
         return categorized
 
 class Recipe:
-    def __init__(self):
+    def __init__(self, name, ingredients, directions, category="Recipe"):
         """Jordan
         Recipe category value will change but is 'Recipe' by default.
         """
-        self.ingredients = []
-        self.directions = ""
-        self.category = "Recipe"
+        self.name = name
+        self.ingredients = ingredients
+        self.directions = directions
+        self.category = category
     def add_ingredients(self, ingredient_list):
         """Jordan
         """
