@@ -2,10 +2,6 @@ import pandas as pd
 import argparse
 import sys
 
-"""Write your function where I put your name. Commit to github when you
-finish your part.
-"""
-
 class RecipeManager:
     def __init__(self):
         """Jordan
