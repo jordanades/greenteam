@@ -15,8 +15,7 @@ class RecipeManager:
         """
         matchRecipes = []
         for rec in self.recipes:
-            if ingredient in rec.ingredients:
-                matchRecipes.append(rec)
+            matchRecipes.append(rec) if ingredient in rec.ingredients else None
         return matchRecipes
             
         
