@@ -1,12 +1,15 @@
-"""Write your function where I put your name. Commit to github when you
-finish your part.
-"""
+import pandas as pd
+import argparse
+import sys
 
 class RecipeManager:
     def __init__(self):
         """Jordan
         """
         self.recipes = []
+        
+    def add_recipe(self, recipe):
+        self.recipes.append(recipe)
         
     def search_for_ingredient(self, ingredient):
         """Jamie
@@ -33,13 +36,14 @@ class RecipeManager:
         return categorized
 
 class Recipe:
-    def __init__(self):
+    def __init__(self, name, ingredients, directions, category="Recipe"):
         """Jordan
         Recipe category value will change but is 'Recipe' by default.
         """
-        self.ingredients = []
-        self.directions = ""
-        self.category = "Recipe"
+        self.name = name
+        self.ingredients = ingredients
+        self.directions = directions
+        self.category = category
     def add_ingredients(self, ingredient_list):
         """Jordan
         """
@@ -72,14 +76,32 @@ def view_recipe(recipe):
     if not isinstance(recipe, Recipe):
         raise ValueError("Expected a Recipe instance")
     
+    print(f"\n{recipe.name}")
+    
     """ Displays the category of the recipe. """
-    print(f"Category: {recipe.category}")
+    print(f"\nCategory: {recipe.category}")
     print("\nIngredients:")
     
     """ Lists all the ingredients of the recipe. """
     for ingredient in recipe.ingredients:
-        print(f"- {ingredient}")
+        print(f"\n- {ingredient}")
     
     """ Displays the directions of the recipe. """ 
     print("\nDirections:")
-    print(recipe.directions)
+    print(f"\n{recipe.directions}")
+
+def parse_args(arglist):
+    parser = argparse.ArgumentParser()
+    parser.add_argument("file", help="filepath for recipes csv")
+    return parser.parse_args(arglist)
+
+if __name__ == "__main__":
+    args = parse_args(sys.argv[1:])
+    
+    Recipe_Book = RecipeManager()
+    df = pd.read_csv(args.file, header=0)
+    for index, row in df.iterrows():
+        Recipe_Book.add_recipe(Recipe(row["Name"], row["Ingredients"].split(", "), row["Directions"], row["Category"]))
+        
+    for recipe in Recipe_Book.recipes:
+        view_recipe(recipe)
