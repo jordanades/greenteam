@@ -71,9 +71,9 @@ class RecipeManager:
         categorized = {}
         for recipe in self.recipes:
             if recipe.category in categorized:
-                categorized[recipe.category].append(recipe)
+                categorized[recipe.category].append(recipe.name)
             else:
-                categorized[recipe.category] = [recipe]
+                categorized[recipe.category] = [recipe.name]
         return categorized
     def sort_recipes(self, condition):
         """Jesse
