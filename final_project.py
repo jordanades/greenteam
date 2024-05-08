@@ -142,6 +142,8 @@ class ShoppingList:
         
         ### Set operations ###
         """
+        combined_list = self.shopping_list.union(other_list)
+        return combined_list
         
         
         
