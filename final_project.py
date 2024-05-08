@@ -80,11 +80,13 @@ class RecipeManager:
         """    
     def display_all_recipes(self):
         """Jesse
-        
-        ### Sequence unpacking ###
-        
-        Use sequence unpacking to display the keys and values (recipe name and category) 
-        from the recipe_dict
+        Display all recipes and their categories.
+
+        Utilizes sequence unpacking to iterate through the keys and values of the recipe_dict,
+        printing each recipe name along with its corresponding category.
+
+        Returns:
+            None
         """
         for x, y in self.recipe_dict.items():
             print(f"{x}: {y}")
@@ -113,11 +115,19 @@ class RecipeManager:
     
     def sort_recipes(self, condition):
         """Jesse
-        ### use key functions ###
-        
-        Make a method that sorts the self.recipes list by number of ingredients, directions length, etc.
-        The thing you sort by is the condition variable, make if statements for a few different options of
-        condition and raise an error if its something else
+        Sorts the recipes list based on a specified condition.
+
+        Args:
+        condition (str): The condition to sort the recipes by. Supported options are:
+            'ingredients': Sorts the recipes by the number of ingredients.
+            'directions': Sorts the recipes by the length of directions.
+            'name': Sorts the recipes alphabetically by name.
+
+        Raises:
+            ValueError: If an unsupported condition is provided.
+
+        Returns:
+            None
         """
         if condition == "ingredients":
             print(self.recipes.sort(key=lambda x: len(x.ingredients)))
@@ -206,9 +216,16 @@ class ShoppingList:
         return self.name
     def add_to_list(self, recipe):
         """Jesse
-        This method will take a Recipe object as input and will search through
-        it's list of ingredients, and add the ingredients not already on the 
-        shopping list to self.shopping_list.
+        Update the shopping list with ingredients from the given Recipe object.
+
+        This method takes a Recipe object as input and iterates through its list of ingredients.
+        If an ingredient is not already on the shopping list, it will be added.
+
+        Args:
+            recipe (Recipe): The Recipe object from which ingredients will be added to the shopping list.
+
+        Returns:
+            None
         """
         for ingredient in recipe.ingredients:
             if ingredient not in self.shopping_list:
