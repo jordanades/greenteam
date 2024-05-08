@@ -54,6 +54,9 @@ class RecipeManager:
         Use sequence unpacking to display the keys and values (recipe name and category) 
         from the recipe_dict
         """
+        for x, y in self.recipe_dict.items():
+            print(f"{x}: {y}")
+        
     def chart_recipes(self):
         """Anthony
         
@@ -75,6 +78,7 @@ class RecipeManager:
             else:
                 categorized[recipe.category] = [recipe.name]
         return categorized
+    
     def sort_recipes(self, condition):
         """Jesse
         ### use key functions ###
@@ -83,6 +87,15 @@ class RecipeManager:
         The thing you sort by is the condition variable, make if statements for a few different options of
         condition and raise an error if its something else
         """
+        if condition == "ingredients":
+            print(self.recipes.sort(key=lambda x: len(x.ingredients)))
+        elif condition == "directions":
+            print(self.recipes.sort(key=lambda x: len(x.directions)))
+        elif condition == "name":
+            print(self.recipes.sort(key=lambda x: x.name))
+        else:
+            raise ValueError("Invalid condition! Supported conditions are 'ingredients', 'directions', or 'name'.")
+    
 
 class Recipe:
     def __init__(self, name, ingredients, directions, category="Recipe"):
