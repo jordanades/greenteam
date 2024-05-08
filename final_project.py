@@ -97,14 +97,28 @@ class RecipeManager:
         ### Visualizing data with pyplot ###
         Make a function that makes a bar or pie chart showing how many recipes we have in each category
         """
+        
     def categorize_recipes(self):
         """Ikenna
         This method will search through the recipes and return a list of
         lists that contain the recipes for the different categories
         (list for desserts, for appetizers, etc.)
         
-        ### List comprehention ###
+        ### List comprehension ###
         """
+    """Categorizes recipes into lists based on their categories.
+    
+    This method utilizes list comprehensions to create a dictionary where each key is a recipe category
+    and the value is a list of recipes names belonging to that category.
+
+    Returns:
+        dict: A dictionary where keys are categories and values are lists of recipe names in those categories.
+    """
+    # Using list comprehension and dictionary comprehension to categorize recipes
+    categorized = {category: [recipe.name for recipe in self.recipes if recipe.category == category]
+                   for category in set(recipe.category for recipe in self.recipes)}
+    return categorized
+        
         categorized = {}
         for recipe in self.recipes:
             if recipe.category in categorized:
@@ -178,12 +192,25 @@ class Recipe:
         ingredient_list = ingredient_list.split(", ")
         for ingredient in ingredient_list:
             self.ingredients.append(ingredient)
+            
     def __str__(self):
         """Ikenna
         ### Magic method other than init ###
         
         Make a string representation of a recipe if we were to use print()
         """
+    """Provides a string representation of the recipe suitable for printing.
+
+    This method formats the recipe details including the name, ingredients, directions, and category into a readable string.
+
+    Returns:
+        str: A formatted string representing the recipe.
+    """
+    ingredients_str = ", ".join(self.ingredients)  # Join all ingredients into a single string
+    return (f"Recipe Name: {self.name}\n"
+            f"Category: {self.category}\n"
+            f"Ingredients: {ingredients_str}\n"
+            f"Directions: {self.directions}")
     
 class ShoppingList:
     """Class for a shopping list, contains list contents and operations.
