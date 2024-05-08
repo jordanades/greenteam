@@ -301,7 +301,7 @@ if __name__ == "__main__":
         elif choice2 == "6":
             print(Recipe_Book.categorize_recipes())
         elif choice2 == "7":
-            sort_choice = input("\nWhat would you like to sort your recipes by?\n")
+            sort_choice = input("\nWhat would you like to sort your recipes by? Supported conditions are 'ingredients', 'directions', or 'name'.\n")
             Recipe_Book.sort_recipes(sort_choice)
         else:
             raise ValueError("That was not an option")
