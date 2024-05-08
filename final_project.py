@@ -113,7 +113,7 @@ class RecipeManager:
         Returns:
             dict: A dictionary where keys are categories and values are lists of recipe names in those categories.
         """
-        # Using list comprehension and dictionary comprehension to categorize recipes
+        
         categorized = {category: [recipe.name for recipe in self.recipes if recipe.category == category]
                     for category in set(recipe.category for recipe in self.recipes)}
         return categorized
@@ -198,7 +198,7 @@ class Recipe:
         Returns:
             str: A formatted string representing the recipe.
         """
-        ingredients_str = ", ".join(self.ingredients)  # Join all ingredients into a single string
+        ingredients_str = ", ".join(self.ingredients) 
         return (f"Recipe Name: {self.name}\n"
                 f"Category: {self.category}\n"
                 f"Ingredients: {ingredients_str}\n"
