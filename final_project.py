@@ -59,6 +59,14 @@ class RecipeManager:
         """Jamie
         This method will search through the recipes and return a list of
         recipes that contain the given ingredient
+        
+        Args:
+            ingredient (str): ingredient name to search for
+        
+        Returns:
+            matchRecipes (list): list of recipes that contain the ingredient
+        
+        ### Conditional Expression ###
         """
         matchRecipes = []
         for rec in self.recipes:
@@ -209,6 +217,11 @@ class ShoppingList:
         """Jamie
         Returns new list that contains unique ingredients from both recipes
         
+        Args:
+            other_list (list): shopping list to union current list with
+        
+        Returns:
+            combined_list (list): combined list of two given lists
         ### Set operations ###
         """
         combined_list = self.shopping_list.union(other_list)
