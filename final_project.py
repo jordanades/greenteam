@@ -11,7 +11,9 @@ Jesse - use of a key function (which can be a lambda expression) with one of the
 Anthony - visualizing data with pyplot
 Ikenna - magic methods other than __init__()
 """
-
+"""The name and technique for each function/method are in the docstrings. 
+The technique (if one is being claimed) will be denoted with '###'
+"""
 
 
 import pandas as pd
@@ -21,13 +23,35 @@ import sys
 active_shopping_lists = []
 
 class RecipeManager:
+    """This class is for a recipe manager, this is similar to a Recipe Book that contains recipes.
+    
+    Attributes:
+        recipes (list): the list of recipes in the manager
+        recipe_dict (dict): dictionary of recipe and its category
+        recipe_names (list): list of strings of the names of the recipes in the book
+    """
     def __init__(self):
         """Jordan
+        
+        Initializes a new instance of the class.
+        
+        Side effects:
+            Initializes empty lists `recipes`, `recipe_dict`, and `recipe_names` as attributes of the instance.
         """
         self.recipes = []
         self.recipe_dict = {} 
         self.recipe_names = []
     def add_recipe(self, recipe):
+        """Jordan
+        
+        Adds a recipe to the recipe collection.
+        
+        Args:
+            recipe (Recipe): The recipe object to add.
+            
+        Side effects:
+            Modifies the lists `recipes`, `recipe_dict`, and `recipe_names` by adding the provided recipe.
+        """
         self.recipes.append(recipe)
         self.recipe_dict[recipe.name] = recipe.category  
         self.recipe_names.append(recipe.name) 
@@ -98,9 +122,26 @@ class RecipeManager:
     
 
 class Recipe:
+    """This class is for a specific recipe, it contains the recipe information.
+    
+    Attributes:
+        name (str): The name of the recipe.
+        ingredients (list of str): The list of ingredients needed for the recipe.
+        directions (str): The cooking directions for the recipe.
+        category (str, optional): The category of the recipe. Defaults to "Recipe".
+    """
     def __init__(self, name, ingredients, directions, category="Recipe"):
         """Jordan
-        Recipe category value will change but is 'Recipe' by default.
+        
+        Initializes the Recipe class. Recipe category value will change but is 'Recipe' by default.
+        
+        Args:
+            name (str): The name of the recipe.
+            ingredients (list of str): The list of ingredients needed for the recipe.
+            directions (str): The cooking directions for the recipe.
+            category (str, optional): The category of the recipe. Defaults to "Recipe".
+            
+        ### optional parameters and/or keyword arguments ###
         """
         self.name = name
         self.ingredients = ingredients
@@ -108,6 +149,13 @@ class Recipe:
         self.category = category
     def add_ingredients(self, ingredient_list):
         """Jordan
+        
+        This method adds ingredients to the recipe.
+        
+        Args:
+            ingredient_list (str): A comma-separated string containing the ingredients to add.
+        Side effects:
+            Modifies the list of ingredients by appending the provided ingredients.
         """
         ingredient_list = ingredient_list.split(", ")
         for ingredient in ingredient_list:
@@ -120,12 +168,33 @@ class Recipe:
         """
     
 class ShoppingList:
+    """Class for a shopping list, contains list contents and operations.
+    
+    Attributes:
+        shopping_list (set): set of ingredients
+        name (str): name of shopping list
+    """
     def __init__(self, name):
         """Jordan
+        
+        Initializes the ShoppingList class.
+        
+        Args:
+            name (str): name of shopping list
+            
+        Side effects:
+            Creates empty set for shopping_list
         """
         self.shopping_list = {}
         self.name = name
     def __str__(self):
+        """Jordan
+        
+        Defines formal str representation of the class.
+        
+        Returns:
+            self.name (str): name of the list
+        """
         return self.name
     def add_to_list(self, recipe):
         """Jesse
@@ -143,7 +212,7 @@ class ShoppingList:
         ### Set operations ###
         """
         combined_list = self.shopping_list.union(other_list)
-        return combined_list
+        return combined_list    
         
         
         
@@ -172,6 +241,17 @@ def view_recipe(recipe):
     print(f"\n{recipe.directions}")
 
 def parse_args(arglist):
+    """Jordan
+    Parses command-line arguments.
+
+    Args:
+        arglist (list of str): The list of command-line arguments.
+
+    Returns:
+        argparse.Namespace: An object containing the parsed arguments.
+        
+    ### The ArgumentParser class from the argparse module ###
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument("file", help="filepath for recipes csv")
     return parser.parse_args(arglist)
