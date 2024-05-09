@@ -1,23 +1,10 @@
+"""Recipe manager program that organizes recipes and shopping lists along with providing functions for those objects.
 """
-Need to add:
-I either added a function or added a line in an existing docstring with one of the below things we need to add.
-Add implementation of these in your new assigned method/function or in the existing method/function.
-
-Jesse - sequence unpacking
-Jamie - set operations on sets or frozensets
-Ikenna - comprehensions or generator expressions
-Jesse - use of a key function (which can be a lambda expression) with one of the following commands: list.sort(), sorted(), min(), or max()
-Ikenna - magic methods other than __init__()
-"""
-"""The name and technique for each function/method are in the docstrings. 
-The technique (if one is being claimed) will be denoted with '###'
-"""
-
 
 import pandas as pd
 import argparse
 import sys
-import matplotlib as plt
+import matplotlib.pyplot as plt
 
 active_shopping_lists = []
 
@@ -83,6 +70,8 @@ class RecipeManager:
         
         Side Effects
             Prints number of recipes in recipe_manager class
+            
+        ### f-strings containing expressions ###
         """
         print(f"Number of recipes: {len(self.recipes)}")
         
@@ -114,7 +103,8 @@ class RecipeManager:
         
         Side Effects:
             Displays a bar chart showing number of recipes in each category.
-        
+            
+        ### visualizing data with pyplot or seaborn ###
         """
         categorized = self.categorize_recipes()
         categories = list(categorized.keys())
