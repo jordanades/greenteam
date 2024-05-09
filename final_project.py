@@ -3,12 +3,10 @@ Need to add:
 I either added a function or added a line in an existing docstring with one of the below things we need to add.
 Add implementation of these in your new assigned method/function or in the existing method/function.
 
-Anthony - f-strings containing expressions
 Jesse - sequence unpacking
 Jamie - set operations on sets or frozensets
 Ikenna - comprehensions or generator expressions
 Jesse - use of a key function (which can be a lambda expression) with one of the following commands: list.sort(), sorted(), min(), or max()
-Anthony - visualizing data with pyplot
 Ikenna - magic methods other than __init__()
 """
 """The name and technique for each function/method are in the docstrings. 
@@ -19,6 +17,7 @@ The technique (if one is being claimed) will be denoted with '###'
 import pandas as pd
 import argparse
 import sys
+import matplotlib as plt
 
 active_shopping_lists = []
 
@@ -41,6 +40,7 @@ class RecipeManager:
         self.recipes = []
         self.recipe_dict = {} 
         self.recipe_names = []
+        
     def add_recipe(self, recipe):
         """Jordan
         
@@ -55,6 +55,7 @@ class RecipeManager:
         self.recipes.append(recipe)
         self.recipe_dict[recipe.name] = recipe.category  
         self.recipe_names.append(recipe.name) 
+        
     def search_for_ingredient(self, ingredient):
         """Jamie
         This method will search through the recipes and return a list of
@@ -72,12 +73,19 @@ class RecipeManager:
         for rec in self.recipes:
             matchRecipes.append(rec) if ingredient in rec.ingredients else None
         return matchRecipes
+    
     def recipe_count(self):
         """Anthony
         Prints the number of recipes in the Recipe manager
         
-        ### f-string containing expression ###
-        """    
+        Returns:
+        None
+        
+        Side Effects
+            Prints number of recipes in recipe_manager class
+        """
+        print(f"Number of recipes: {len(self.recipes)}")
+        
     def display_all_recipes(self):
         """Jesse
         Display all recipes and their categories.
@@ -93,10 +101,30 @@ class RecipeManager:
         
     def chart_recipes(self):
         """Anthony
+        Visualizes the number of recipes in each category using pyplot
         
-        ### Visualizing data with pyplot ###
-        Make a function that makes a bar or pie chart showing how many recipes we have in each category
+        This function creates a bar chart showing the number of recipes in each
+        category. It retrieves the data utilizing the categorize_recipes method
+        and plots the data using pyplot.
+        
+        Returns:
+        None
+        
+        Side Effects:
+            Displays a bar chart showing number of recipes in each category.
+        
         """
+        categorized = self.categorize_recipes()
+        categories = list(categorized.keys())
+        counts = [len(categorized[category]) for category in categories]
+        
+        plt.figure(figsize=(10,6))
+        plt.bar(categories, counts, color='skyblue')
+        plt.xlabel('Categories')
+        plt.ylabel('Number of Recipes')
+        plt.title('Recipe Category Breakdown')
+        plt.xticks(rotation=45)
+        plt.show()
         
     def categorize_recipes(self):
         """Ikenna
