@@ -297,23 +297,30 @@ def view_recipe(recipe):
     """Anthony
     Takes a recipe object as an input and displays all of its properties in a
     good looking format.
+    
+    Args:
+        recipe (Recipe): The Recipe object to display.
+        
+    Returns:
+        None
+        
+    Side Effects:
+        Prints the name, category, ingredients and directions of the recipe.
+        Raises a ValueError if the input is not a Recipe instance.
+    
     """
     
-    """ Confirms that the input is a Recipe Instance. """
     if not isinstance(recipe, Recipe):
         raise ValueError("Expected a Recipe instance")
     
     print(f"\n{recipe.name}")
     
-    """ Displays the category of the recipe. """
     print(f"\nCategory: {recipe.category}")
     print("\nIngredients:")
     
-    """ Lists all the ingredients of the recipe. """
     for ingredient in recipe.ingredients:
         print(f"\n- {ingredient}")
     
-    """ Displays the directions of the recipe. """ 
     print("\nDirections:")
     print(f"\n{recipe.directions}")
 
